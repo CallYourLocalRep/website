@@ -17,6 +17,18 @@ export const meta: MetaFunction = () => ({
 	viewport: "width=device-width,initial-scale=1",
 });
 
+function Navbar() {
+	return (
+		<nav className="flex flex-row p-3 border border-gray-700">
+			<div className="mx-3 align-center p3 font-bold">Call Your Representative</div>
+			<div className="mx-3 p-3 border-gray-700 border">Link</div>
+			<div className="mx-3 p-3 border-gray-700 border">Link</div>
+			<div className="mx-3 p-3 border-gray-700 border">Link</div>
+			<div className="mx-3 p-3 border-gray-700 border">Link</div>
+		</nav>
+	)
+}
+
 export default function App() {
 	return (
 		<html lang="en">
@@ -25,6 +37,7 @@ export default function App() {
 				<Links />
 			</head>
 			<body>
+				<Navbar />
 				<Outlet />
 				<ScrollRestoration />
 				<Scripts />
