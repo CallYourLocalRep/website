@@ -1,28 +1,38 @@
 import { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
+import issues from 'data/issues.json';
 
-type LoaderData = {
+type Issue = {
+	id: number;
 	slug: string;
 	title: string;
-	content: string;
-};
+	description: string;
+	callTemplate: string;
+}
+
+const findIssueById = (id: number): Issue => {
+	const issue = issues.filter(issue => issue.id === id)[0];
+	return {
+		id, slug: issue.slug, title: issue.title, description: issue.description, callTemplate: issue.callTemplate
+	}
+}
 
 export const loader: LoaderFunction = async ({
 	params,
-}): Promise<LoaderData> => {
-	const slug = params.issue ?? "nullIssue";
-	const title = slug;
-	const content = "Lorem ipsum dolor sit amet";
-	return { slug, title, content };
+}): Promise<Issue> => {
+	if(!params.issue) throw new TypeError();
+	const issueNumber = Number.parseInt(params.issue);
+	return findIssueById(issueNumber);
 };
 
 export default function Issue() {
-	const data = useLoaderData<LoaderData>();
+	const data = useLoaderData<Issue>();
 
 	return (
 		<>
-			<h3 className="text-xl p-3">{data.title}</h3>
-			<p>A very pressing issue</p>
+			<h3 className="text-xl py-3">{ data.title }</h3>
+			<p>{ data.description }</p>
+			<p className="bg-blue-100 p-3 my-3"> { data.callTemplate } </p>
 		</>
 	);
 }

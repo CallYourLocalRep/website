@@ -1,0 +1,7 @@
+[{
+    "id": 0,
+    "slug": "gun-control",
+    "title": "Gun Control",
+    "description": "Gun control is the leading cause of deaths among youth in the united states. Call your local representative to address gun control laws. ",
+    "callTemplate": "Hi, my name is {name} and I'm a citizen of {city}. I'm calling to demand stronger gun control laws. "
+}]
